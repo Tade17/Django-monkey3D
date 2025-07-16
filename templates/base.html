@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +50,7 @@
             </button>
 
             <a class="navbar-brand d-flex align-items-center me-auto" href="#">
-                <img src="#" alt="Monkey3D Logo" class="header-logo-img rounded-circle me-3">
+                <img src="{% static 'images/logo.jpg' %}" alt="Monkey3D Logo" class="header-logo-img rounded-circle me-3">
                 <span class="d-none d-sm-inline fw-bold fs-5">Monkey3D</span>
             </a>
 
@@ -121,7 +122,7 @@
 
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="#" alt="Monkey3D Logo" class="logo-img rounded-circle me-2">
+                        <img src="{% static 'images/logo.jpg' %}" alt="Monkey3D company logo featuring a stylized monkey face inside a circle with a friendly and creative tone, set against a simple background" class="logo-img rounded-circle me-2">
                         <span class="fs-5 fw-semibold">Monkey3D</span>
                     </div>
                     <p class="small">Transformamos tus ideas en realidad con tecnología de
