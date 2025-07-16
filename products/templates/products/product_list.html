@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %} Catálogo de productos{% endblock %}
+{% block content %}
+
+    <h1>Nuesto catalogo</h1>
+    <div class="row">
+        {% for product in product_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{product.image.url}}" alt="{{product.name}}" class="card-img-top">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text"> S/.{{product.price}} </p>
+                    <a href="{% url 'product_detail' slug=product.slug %}" class="btn btn-primary">Ver detalles</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No hay productos disponibles en este momento</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

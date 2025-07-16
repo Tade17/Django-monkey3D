@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} {{product.name}} {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        {% if product.image %}
+        <img src="{{product.image.url}}" alt="{{product.name}}" class="img-fluid">
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h1>{{product.name}}</h1>
+        <p class="lead">S/. {{product.price}}</p>
+        <p>{{product.description}}</p>
+        <p>{{product.stock}}</p>
+        <a href="#" class="btn btn-success">Añadir al carrito(por programar)</a>
+    </div>
+</div>
+{% endblock %}
