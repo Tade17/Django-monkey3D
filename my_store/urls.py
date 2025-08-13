@@ -18,15 +18,24 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from core import views as core_views
+from users import views as user_views
 urlpatterns = [
     # Admin URL
     path('admin/', admin.site.urls),
     # Include the URLs for each app
+    
     path('users/', include('users.urls')),
-    path('', include('products.urls')),
+    path('products/', include('products.urls'),name='home'),
     path('orders/', include('orders.urls')),
     path('marketing/', include('marketing.urls')),
+    
+    
+    path('',core_views.home, name='home'),
+    path('signup/',user_views.signup,name='signup'),
+    
+    # Esta línea maneja login, logout, reseteo de contraseña, etc.
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

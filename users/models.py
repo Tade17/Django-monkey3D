@@ -5,8 +5,6 @@ class User(AbstractUser):
    # Django ya incluye username, email, password, is_active, is_staff, etc.
     # Solo necesitas añadir los campos EXTRA que tú quieras.
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=30, blank=True, null=True)
     date_birth = models.DateField(blank=True, null=True)
     
     def __str__(self):

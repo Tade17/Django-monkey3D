@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}   Bienvenido a monkey3d {% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">¡Bienvenido a Monkey3D!</h1>
+    <p class="lead">Transformamos tus ideas en realidad con impresión 3D.</p>
+    <hr class="my-4">
+    <p>Explora nuestro catálogo para ver nuestros últimos trabajos y productos.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'product_list' %}" role="button">Ver Productos</a>
+</div>
+
+{% endblock %}

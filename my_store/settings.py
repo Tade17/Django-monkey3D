@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig', 
     'products.apps.ProductsConfig', 
-    'orders.apps.OrdersConfig', 
+    'orders.apps.OrdersConfig',
+    'core',
     'marketing.apps.MarketingConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,6 @@ MEDIA_URL = '/media/'
 # Ruta absoluta en tu sistema de archivos donde se guardarán los archivos.
 # Django creará esta carpeta 'media' en la raíz de tu proyecto.
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGIN_REDIRECT_URL='home'
+LOGOUT_REDIRECT_URL='home'

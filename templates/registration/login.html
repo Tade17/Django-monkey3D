@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block title %} Inicio de Sesión {% endblock%}
+
+{% block content%}
+<br><br>
+<div class="row justify-content-center ">
+    <div class="col-md-6">
+        <div class="card ">
+            <div class="card-header bg-primary text-center text-white">
+                <h2>Inicio de Sesion</h2>
+            </div>
+            <div class="card-body mt-2">
+                {% if form.errors %}
+                <p class="text-danger">Tu usuario o contraseña son incorrectos</p>
+                {% endif %}
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary mt-2 ">Entrar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <p class="mt-3">¿No tienes un cuenta aún?<a href="{% url 'signup' %}">Registrate aquí</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %} Registro de usuario {% endblock %}
+{% block content %}
+<div class="container mt-5"> {# Contenedor de Bootstrap con margen superior #}
+    <div class="row justify-content-center"> {# Fila de Bootstrap para centrar el contenido #}
+        <div class="col-md-6"> {# Columna que ocupa 6 unidades en pantallas medianas y grandes, centrándose #}
+            <div class="card"> {# Inicio del componente Card de Bootstrap #}
+                <div class="card-header text-center bg-primary text-white"> {# Cabecera de la tarjeta #}
+                    <h2>Registro de Usuario</h2>
+                </div>
+                <div class="card-body"> {# Cuerpo de la tarjeta, donde va el formulario #}
+                    <form method="post" class="needs-validation" novalidate> {# Formulario HTML, añade needs-validation para JS #}
+                        {% csrf_token %} 
+
+                        {% for field in form %}
+                            <div class="mb-3">
+                                {{ field.label_tag }} {# Muestra la etiqueta del campo #}
+
+                                {# Aquí mejoramos el renderizado para aplicar form-control a todos los inputs automáticamente #}
+                                {% if field.field.widget.input_type == 'password' %}
+                                    {# Para contraseñas, aseguramos el type="password" y las clases #}
+                                    <input type="password" class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                           id="{{ field.id_for_label }}" name="{{ field.html_name }}"
+                                           {% if field.value %}value="{{ field.value }}"{% endif %}
+                                           {% if field.field.required %}required{% endif %} {# Agrega 'required' si el campo Django es requerido #}
+                                           >
+                                {% else %}
+                                    {# Para el resto de campos, Django lo renderiza y le añadimos las clases #}
+                                    {{ field|add_class:"form-control" }} {# APLICA LA CLASE form-control #}
+                                {% endif %}
+
+                                {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="d-grid gap-2"> {# d-grid y gap-2 para que el botón ocupe todo el ancho #}
+                            <button type="submit" class="btn btn-primary  mt-3">Registrarse</button> {# Botón de envío #}
+                        </div>
+                    </form>
+                </div> {# Fin card-body #}
+                <div class="card-footer text-center"> {# Pie de la tarjeta #}
+                    ¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="link">Inicia sesión</a> {# Enlace corregido #}
+                </div>
+            </div> {# Fin card #}
+        </div> {# Fin col-md-6 #}
+    </div> {# Fin row #}
+</div> {# Fin container #}
+
+{% endblock %}
